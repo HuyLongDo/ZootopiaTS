@@ -103,23 +103,6 @@ const LoginPopup: React.FC<LoginPopupProps> = ({ isOpen, onClose, onUserLoginSuc
     setIsLoading(true); // Bắt đầu loading
     try {
 
-        // Cách gọi API với fetch cũ
-        // const response = await fetch('https://api-dev.estuary.solutions:8443/ovaltine-web-api-dev/v1/auth/sign-in', {
-        // method: 'POST',
-        // headers: {
-        //   'Content-Type': 'application/json',
-        // },
-        // body: JSON.stringify({
-        //   phone: dataUser.phoneNumber, // API yêu cầu 'phone'
-        //   password: dataUser.password,
-        // }),
-
-        // const responseData = await response.json();
-        // if (!response.ok) {
-        //   // Nếu server trả về lỗi (status 4xx, 5xx)
-        //   throw new Error(responseData.message || 'Đăng nhập thất bại. Vui lòng thử lại.');
-        // }
-
         // Sử dụng axios.post để gọi API
       const response = await axios.post('https://api-dev.estuary.solutions:8443/ovaltine-web-api-dev/v1/auth/sign-in', {
         phone: dataUser.phoneNumber, // API yêu cầu 'phone'

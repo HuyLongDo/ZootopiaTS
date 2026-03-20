@@ -6,7 +6,7 @@ interface LoginProps {
 }
 
 const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
-  const CORRECT_PASSWORD = "123123estuary";
+  const CORRECT_PASSWORD = "123123LongD";
 
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -61,7 +61,7 @@ const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
         </div>
 
         <p className="mt-8 text-white/70 text-sm">
-          &copy; {new Date().getFullYear()} HL EstuarySolutions
+          &copy; {new Date().getFullYear()} HuyLongD
         </p>
       </div>
     </div>
