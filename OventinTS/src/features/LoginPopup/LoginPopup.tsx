@@ -102,8 +102,26 @@ const LoginPopup: React.FC<LoginPopupProps> = ({ isOpen, onClose, onUserLoginSuc
   const onSubmit = async (dataUser: UserLogin) => {
     setIsLoading(true); // Bắt đầu loading
     try {
+      
+      // --- 1. KIỂM TRA DỮ LIỆU USER TỪ LOCALSTORAGE  ---
+      const existingUsersRaw = localStorage.getItem("registeredUsers");
+      const existingUsers: User[] = existingUsersRaw ? JSON.parse(existingUsersRaw) : [];
+      const userExist = existingUsers.find(
+        (user) => user.phoneNumber === dataUser.phoneNumber && user.password === dataUser.password
+      );
 
-        // Sử dụng axios.post để gọi API
+      if (userExist) {
+        onUserLoginSuccess(userExist);
+        setAlertState({
+          isOpen: true,
+          type: 'success',
+          title: 'Đăng nhập thành công!',
+          description: `Xin chào, ${userExist.fullName}!`
+        });
+        return;
+      }
+
+      // --- 2. NẾU KHÔNG CÓ TRONG LOCALSTORAGE: GỌI API ĐĂNG NHẬP ---
       const response = await axios.post('https://api-dev.estuary.solutions:8443/ovaltine-web-api-dev/v1/auth/sign-in', {
         phone: dataUser.phoneNumber, // API yêu cầu 'phone'
         password: dataUser.password,

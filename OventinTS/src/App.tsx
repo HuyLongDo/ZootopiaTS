@@ -141,8 +141,6 @@ function App() {
       onRegisterClickFeater={openRulePopup}
       />
       <main>
-
-
         <LoginPopup 
           isOpen={isLoginPopup} 
           onClose={closeLoginPopup} 
